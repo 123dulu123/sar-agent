@@ -9,9 +9,9 @@ paths:
   profile_path: "data/dataset_profile.yaml"
 
 weights:
-  default: "weights/best.pt"      # SAR 舰船权重（优先）
+  default: "weights/best.pt"      # 自训练权重（Phase 2，mAP@0.5=0.8907）
   fallback: "yolov8n.pt"          # 兜底：仅验证管线，检测无意义
-  device: "cpu"                   # cpu | auto | cuda
+  device: "auto"                  # cpu | auto | cuda（训练期间建议改回 cpu 避免抢显存）
 
 detect:
   conf: 0.25

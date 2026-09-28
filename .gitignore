@@ -27,3 +27,6 @@ Thumbs.db
 # 临时下载残留
 *.log
 *.whl
+
+# Ultralytics 训练/评估临时产物
+runs/
