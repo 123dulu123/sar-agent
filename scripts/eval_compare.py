@@ -6,7 +6,6 @@
 产出：控制台对比表 + docs/experiments.md + PR 曲线图路径。
 """
 import argparse
-import shutil
 import sys
 from pathlib import Path
 
@@ -56,7 +55,7 @@ def main():
         sys.exit("有效权重不足两个，无法对比")
 
     lines = ["# Phase 2 训练实验记录", "",
-             f"评估集：HRSID_OPENSSDD v2 test（672 图 / 2014 框），imgsz=640",
+             "评估集：HRSID_OPENSSDD v2 test（672 图 / 2014 框），imgsz=640",
              "", "| 权重 | mAP@0.5 | mAP@0.5:0.95 | Precision | Recall |",
              "|---|---|---|---|---|"]
     for r in rows:
@@ -65,8 +64,8 @@ def main():
     d50 = round(rows[-1]["mAP50"] - rows[0]["mAP50"], 4)
     d5095 = round(rows[-1]["mAP50_95"] - rows[0]["mAP50_95"], 4)
     lines += ["", f"- mAP@0.5 变化：{d50:+.4f}；mAP@0.5:0.95 变化：{d5095:+.4f}",
-              f"- 说明：demo 权重来源为开源社区（训练配置未知）；trained 权重为 "
-              f"YOLOv8n 在本数据集 train 子集训练所得，二者仅作工程闭环验证。"]
+              "- 说明：demo 权重来源为开源社区（训练配置未知）；trained 权重为 "
+              "YOLOv8n 在本数据集 train 子集训练所得，二者仅作工程闭环验证。"]
 
     out = ROOT / "docs" / "experiments.md"
     out.parent.mkdir(parents=True, exist_ok=True)
