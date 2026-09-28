@@ -23,3 +23,7 @@ store/*.db
 .vscode/
 Thumbs.db
 .DS_Store
+
+# 临时下载残留
+*.log
+*.whl
