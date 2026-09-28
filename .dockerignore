@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.py[cod]
+outputs/
+store/
+.git/
+.github/
+configs/.env
+weights/train/
+weights/yolo_dataset/
+*.md
+!README.md

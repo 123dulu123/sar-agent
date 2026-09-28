@@ -1,0 +1,36 @@
+paths:
+  # HRSID_OPENSSDD v2 数据集（Roboflow 导出，COCO for MMDetection 格式）
+  dataset_root: "G:/数据集/SARscope/SARscope"
+  weights_dir: "weights"          # 相对项目根
+  outputs_dir: "outputs"          # 检测结果 JSON / 标注图 / 报告
+  uploads_dir: "outputs/uploads"  # 界面上传的图像
+  store_dir: "store"              # SQLite 长期记忆
+  samples_dir: "data/samples"     # 内置示例图（test 集精选）
+  profile_path: "data/dataset_profile.yaml"
+
+weights:
+  default: "weights/best.pt"      # SAR 舰船权重（优先）
+  fallback: "yolov8n.pt"          # 兜底：仅验证管线，检测无意义
+  device: "cpu"                   # cpu | auto | cuda
+
+detect:
+  conf: 0.25
+  iou: 0.45
+  imgsz: 640
+  max_side: 1280                  # 上传图统一压缩到该长边内，防大图卡顿
+
+llm:
+  base_url: "https://open.bigmodel.cn/api/paas/v4/"
+  model: "glm-5.3-flash"
+  temperature: 0.3
+  max_steps: 8                    # Agent 单任务最大工具调用轮数
+  history_window: 20              # 注入上下文的最近消息数
+  timeout: 60                     # 单次请求超时（秒）
+  max_retries: 3
+
+report:
+  formats: ["markdown", "pdf", "docx"]
+
+server:
+  host: "127.0.0.1"
+  port: 7860

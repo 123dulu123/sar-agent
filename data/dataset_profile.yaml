@@ -1,0 +1,62 @@
+dataset_root: G:\数据集\SARscope\SARscope
+name: HRSID_OPENSSDD v2（Roboflow 导出，COCO for MMDetection）
+note: 本地目录名为 SARscope，实际内容为 HRSID 与 SSDD/OpenSSDD 合并的舰船检测数据集；图像已预处理为 640x640，无增强。
+train:
+  images: 4717
+  annotations: 13640
+  categories:
+  - ship
+  image_sizes:
+  - 640x640 x4717
+  images_without_targets: 1
+  bbox_area_px2:
+    median: 613
+    p90: 2573
+    max: 240335
+  max_targets_in_one_image: 163
+valid:
+  images: 1346
+  annotations: 3781
+  categories:
+  - ship
+  image_sizes:
+  - 640x640 x1346
+  images_without_targets: 0
+  bbox_area_px2:
+    median: 632
+    p90: 2602
+    max: 333407
+  max_targets_in_one_image: 127
+test:
+  images: 672
+  annotations: 2014
+  categories:
+  - ship
+  image_sizes:
+  - 640x640 x672
+  images_without_targets: 0
+  bbox_area_px2:
+    median: 564
+    p90: 2198
+    max: 116031
+  max_targets_in_one_image: 52
+total:
+  images: 6735
+  annotations: 19435
+samples:
+- file: P0112_3600_4400_7200_8000_png.rf.4beb2a142d4e4d12902a2efe132aaf37.jpg
+  targets: 52
+- file: P0105_3600_4400_15600_16400_png.rf.2b29880f8e2256d0d65775194a7529f4.jpg
+  targets: 51
+- file: P0115_4200_5000_9800_10600_png.rf.c9a192467ca17d776fb64ea2eaf4029d.jpg
+  targets: 41
+- file: P0109_4200_5000_10200_11000_png.rf.d6668b5996d2919b17d0d92835bb2379.jpg
+  targets: 41
+- file: P0135_600_1400_6000_6800_png.rf.11667aa2c5f5a92e09001da820862da8.jpg
+  targets: 31
+- file: P0111_6000_6800_10200_11000_png.rf.6b66b71500d5b8b1b03598029cb41e2a.jpg
+  targets: 29
+- file: P0112_3600_4400_7800_8600_png.rf.b25bdfc76de6a98561f1b4ef8139413c.jpg
+  targets: 20
+- file: P0105_3000_3800_16200_17000_png.rf.4478b51a565a96e7ff68ae4de7810378.jpg
+  targets: 18

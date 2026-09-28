@@ -1,0 +1,46 @@
+# SAR 图像舰船检测分析报告
+
+**报告编号**：{{ result_id }}
+**生成时间**：{{ generated_at }}
+**图像文件**：{{ image_path }}
+**检测模型**：{{ weights }}（{{ weights_source }}）
+**检测参数**：conf={{ params.conf }} / iou={{ params.iou }} / imgsz={{ params.imgsz }} / device={{ params.device }}
+
+## 一、检测统计
+
+| 指标 | 数值 |
+|---|---|
+| 检出目标数 | {{ summary.num_objects }} |
+| 类别计数 | {{ cls_counts_str }} |
+| 平均 / 最高 / 最低置信度 | {{ summary.conf_mean }} / {{ summary.conf_max }} / {{ summary.conf_min }} |
+| 推理耗时 | {{ summary.elapsed_sec }} 秒 |
+
+![标注结果]({{ annotated_name }})
+
+![置信度分布]({{ hist_name }})
+
+![目标位置分布]({{ position_name }})
+
+## 二、目标明细（按置信度降序）
+
+| # | 类别 | 置信度 | bbox (x1, y1, x2, y2) |
+|---|---|---|---|
+{% for b in boxes -%}
+| {{ loop.index }} | {{ b.cls_name }} | {{ b.conf }} | {{ b.xyxy | join(', ') }} |
+{% endfor %}
+{% if not boxes -%}
+| - | - | - | （无检出目标） |
+{% endif %}
+
+## 三、智能解读
+
+{% for para in interpretation -%}
+{{ para }}
+
+{% endfor %}
+## 四、方法说明
+
+- **数据集**：HRSID_OPENSSDD v2（HRSID 与 SSDD/OpenSSDD 合并舰船数据集，Roboflow 导出，COCO 格式，train 4717 / valid 1346 / test 672，640×640，单一类别 ship，小目标占比高）。
+- **检测器**：YOLOv8（Ultralytics），当前使用{{ weights_source }}；置信度阈值 {{ params.conf }}，NMS IoU {{ params.iou }}。
+- **解读方式**：统计结论来自检测器结构化输出；文字解读由 GLM 大模型基于该结构化结果生成，模型不直接观测原图，以保证数字可溯源。
+- **局限性**：SAR 小目标存在漏检可能，低置信度框存在虚警可能；本报告仅用于学术与民用场景分析。

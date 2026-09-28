@@ -1,0 +1,17 @@
+# torch 锁定 2.5.1：2.8/2.9 的 DLL 加载器在本机（Win11 + 腾讯电脑管家）触发
+# WinError 1114，c10.dll 初始化失败；2.5.1 正常。升级前先验证 import torch。
+torch==2.5.1
+torchvision==0.20.1
+ultralytics>=8.3
+gradio>=4.44
+openai>=1.40
+reportlab>=4.0
+python-docx>=1.1
+python-dotenv>=1.0
+PyYAML>=6.0
+opencv-python>=4.8
+matplotlib>=3.7
+pillow>=10.0
+numpy>=1.24
+pandas>=2.0
+pytest>=8.0

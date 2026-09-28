@@ -1,0 +1,21 @@
+[project]
+name = "sar-agent"
+version = "1.0.0"
+description = "SAR image ship detection and intelligent analysis powered by YOLOv8 + GLM Function-Calling Agent"
+requires-python = ">=3.10"
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+exclude = [".venv", "weights", "outputs", "store", "data"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W", "B", "UP"]
+ignore = [
+    "E501",  # 行长由 line-length 控制，中文注释常超限
+    "UP007", # 保留 X | Y 与 Optional 的既有写法
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

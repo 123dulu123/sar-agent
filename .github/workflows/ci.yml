@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install CPU torch first (keeps CI lean)
+        run: pip install torch==2.5.1 torchvision==0.20.1 --index-url https://download.pytorch.org/whl/cpu
+      - name: Install dependencies
+        run: pip install -r requirements.txt ruff
+      - name: Lint
+        run: ruff check .
+      - name: Unit tests
+        run: pytest tests/ -q
+      - name: Import smoke (app builds without launching)
+        run: python -c "import sys; sys.path.insert(0,'.'); from app import build_demo; build_demo(); print('demo build OK')"
+        env:
+          ZHIPUAI_API_KEY: "dummy-key-for-import"

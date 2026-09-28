@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+
+# 密钥与本地配置
+configs/.env
+
+# 训练数据集与训练过程产物（体积大，不入库；演示权重 best.pt 例外）
+weights/*
+!weights/best.pt
+weights/train/
+weights/yolo_dataset/
+
+# 运行产物
+outputs/
+store/*.db
+
+# IDE / 系统
+.idea/
+.vscode/
+Thumbs.db
+.DS_Store
